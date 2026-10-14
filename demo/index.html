@@ -1,0 +1,51 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>LuxeFind Search Pro — Simulated Interactive UI Preview</title><meta name="robots" content="noindex,nofollow"><link rel="stylesheet" href="assets/search.css"><style>body{background:#edeae3;min-height:100vh;padding:50px 20px;margin:0}body:before{content:"INTERACTIVE DEMO · SIMULATED SEARCH RESULTS · NO EXTERNAL API";display:block;text-align:center;letter-spacing:3px;font:12px Arial,sans-serif;color:#605c52;margin-bottom:32px}@media(max-width:600px){body{padding:12px 8px}}</style></head><body>        <section class="lfxsp-search" style="--swp-accent:#d5b37a" data-lfxsp-search data-mode="all" aria-label="LuxeFind search">
+          <div class="lfxsp-search__ambient" aria-hidden="true"></div>
+          <header class="lfxsp-search__head"><span class="lfxsp-search__eyebrow">LUXEFIND <span aria-hidden="true">✦</span> DISCOVERY</span>
+            <h2>Find the <em>extraordinary.</em></h2><p>Intelligent discovery, beautifully simple.</p></header>
+          <form class="lfxsp-search__form" role="search" data-lfxsp-form>
+            <label class="screen-reader-text" for="swp-123">Search query</label>
+            <span class="lfxsp-search__icon" aria-hidden="true">⌕</span>
+            <input id="swp-123" type="search" name="q" autocomplete="off" minlength="2" maxlength="160" placeholder="Search articles, products, and more…" required>
+            <button type="submit"><span>Explore</span><span aria-hidden="true">↗</span></button>
+          </form>
+          <nav class="lfxsp-search__tabs" aria-label="Search category" data-lfxsp-tabs>
+                      <button class="lfxsp-search__tab" type="button" data-lfxsp-tab="all" aria-pressed="true">All</button>
+                      <button class="lfxsp-search__tab" type="button" data-lfxsp-tab="site" aria-pressed="false">Site</button>
+                      <button class="lfxsp-search__tab" type="button" data-lfxsp-tab="products" aria-pressed="false">Products</button>
+                      <button class="lfxsp-search__tab" type="button" data-lfxsp-tab="web" aria-pressed="false">Web</button>
+                      <button class="lfxsp-search__tab" type="button" data-lfxsp-tab="images" aria-pressed="false">Images</button>
+                      <button class="lfxsp-search__tab" type="button" data-lfxsp-tab="news" aria-pressed="false">News</button>
+                      <button class="lfxsp-search__tab" type="button" data-lfxsp-tab="videos" aria-pressed="false">Videos</button>
+                      <button class="lfxsp-search__tab" type="button" data-lfxsp-tab="maps" aria-pressed="false">Maps</button>
+                      <button class="lfxsp-search__tab" type="button" data-lfxsp-tab="knowledge" aria-pressed="false">Knowledge</button>
+                      <button class="lfxsp-search__tab" type="button" data-lfxsp-tab="translate" aria-pressed="false">Translate</button>
+                      <button class="lfxsp-search__tab" type="button" data-lfxsp-tab="instant" aria-pressed="false">Instant answers</button>
+          </nav>
+                    <div class="lfxsp-search__filters" data-lfxsp-filters hidden aria-label="Product filters">
+            <label>Category <input type="text" name="category" maxlength="60" placeholder="Category slug"></label>
+            <label>Min price <input type="number" name="min_price" min="0" max="9999999" step="0.01" placeholder="0"></label>
+            <label>Max price <input type="number" name="max_price" min="0" max="9999999" step="0.01" placeholder="Any"></label>
+            <label>Sort <select name="sort"><option value="relevance">Relevance</option><option value="newest">Newest</option><option value="price_asc">Price: low to high</option><option value="price_desc">Price: high to low</option></select></label>
+          </div>          <div class="lfxsp-search__language" data-lfxsp-language hidden><label>Translate to <select name="lang"><option value="en">English</option><option value="ar">Arabic</option><option value="fr">French</option><option value="es">Spanish</option><option value="de">German</option><option value="hi">Hindi</option><option value="tr">Turkish</option></select></label></div>          <div class="lfxsp-search__status" role="status" aria-live="polite" aria-atomic="true" data-lfxsp-status>Start typing to explore.</div>
+          <div class="lfxsp-search__results" data-lfxsp-results></div>
+          <footer class="lfxsp-search__footer"><span>POWERED BY LUXEFIND</span><span>DISCOVER WITH CONFIDENCE</span></footer>
+          <p class="lfxsp-search__attribution">Map data &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap contributors</a>.</p>                      <p class="lfxsp-search__disclosure">External search, map, knowledge and translation modes share submitted queries with their configured providers. External image previews may also contact their hosts. Site content search stays on this website.</p>
+                  </section><script>window.lfxspConfig={endpoint:"https://demo.luxefind.invalid/wp-json/luxefind/v1/search",min:2,autocomplete:true,thumbnails:true};</script><script>
+/* This file is an intentionally simulated frontend-only demo. It does not call providers. */
+(function(){
+ const originalFetch=window.fetch;
+ window.fetch=async function(url,options){
+  const u=new URL(String(url),location.href);
+  if(u.pathname==='/wp-json/luxefind/v1/search'){
+   const q=u.searchParams.get('q')||'',mode=u.searchParams.get('mode')||'all';
+   const site=(mode==='site'||mode==='all'||mode==='products')?[{title:'Design System Journal',url:'https://example.org/journal',source:'site',type:'post',description:'Sample local result from the simulated demo. Real site content depends on WordPress.'}]:[];
+   const web=(mode==='web'||mode==='all')?[{title:'Example Search Result',url:'https://example.org/',source:'brave',type:'web',description:'Simulated external result. Configure your own API key for live results.'}]:[];
+   const media=['images','news','videos'].includes(mode)?[{title:'Example '+mode+' entry',url:'https://example.org/',source:'brave',type:mode,description:'Placeholder example only — not queried from an API.'}]:[];
+   const instant=mode==='instant'?{type:'preview',title:'Instant-answer preview',value:q.trim()==='2+3'?'5':'Try 2+3, 25 km to miles or uuid in the installed plugin.'}:null;
+   const warnings=['SIMULATED RESULTS — THIS IS A FRONTEND DESIGN PREVIEW ONLY'];
+   return new Response(JSON.stringify({query:q,mode,site,web,media,warnings,knowledge:null,instant}),{status:200,headers:{'Content-Type':'application/json'}});
+  }
+  return originalFetch(url,options);
+ };
+})();
+</script><script src="assets/search.js"></script></body></html>
